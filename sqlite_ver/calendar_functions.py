@@ -196,7 +196,7 @@ def get_reminders(date: str) -> list:
     cal_cur.execute(sql_query)
     data: list = cal_cur.fetchall()
     for index, row in enumerate(data):
-        data[index] = (row[0], row[1], row[2][-7:], bool(row[3]))
+        data[index] = (row[0], row[1], row[2], bool(row[3]))
     return data
 
 
