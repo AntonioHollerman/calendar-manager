@@ -1,0 +1,6 @@
+CREATE DATABASE calendar;
+CREATE TABLE reminders(
+reminder_id SERIAL PRIMARY KEY,
+reminder_desc VARCHAR(300),
+reminder_date TIMESTAMP,
+delete_when_pass BOOLEAN);

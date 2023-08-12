@@ -9,7 +9,7 @@ from win10toast import ToastNotifier
 def create_database():
     some_conn = pg2.connect(user='postgres', password='password')
     some_cur = some_conn.cursor()
-    some_cur.execute("CREATE DATABASE calendar__")
+    some_cur.execute("CREATE DATABASE calendar")
     some_conn.commit()
     some_conn.close()
     some_cur.close()
@@ -17,11 +17,11 @@ def create_database():
 
 notification = ToastNotifier()
 try:
-    cal_conn = pg2.connect(database='calendar__', user='postgres', password='password')
+    cal_conn = pg2.connect(database='calendar', user='postgres', password='password')
     cal_cur = cal_conn.cursor()
 except pg2.OperationalError:
     create_database()
-    cal_conn = pg2.connect(database='calendar__', user='postgres', password='password')
+    cal_conn = pg2.connect(database='calendar', user='postgres', password='password')
     cal_cur = cal_conn.cursor()
     cal_cur.execute("""CREATE TABLE reminders( 
 reminder_id SERIAL PRIMARY KEY, 
