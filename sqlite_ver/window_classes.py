@@ -11,6 +11,7 @@ class Calendar(tk.Tk):
         self.start_frame = StartWindow(self)
         self.months_frame = MonthsWindow(self)
         self.schedule_frame = ScheduleWindow(self, f'{month}/{day}')
+        self.time_now = ttk.Label()
 
         self.start_frame.grid(row=2, column=0, sticky="nesw")
 
@@ -21,15 +22,14 @@ class Calendar(tk.Tk):
 
         self.columnconfigure(0, weight=1)
 
-        self.time_display = ttk.Label()
         self.current_window = "Start Frame"
         self.selected_date = f"{month:02d}-{day:02d}"
 
     def run(self):
         self.start_frame.tkraise()
 
-        title = ttk.Label(self, text=str_time(), anchor="center")
-        title.grid(row=0, column=0, sticky="nesw")
+        self.time_now = ttk.Label(self, text=str_time(), anchor="center")
+        self.time_now.grid(row=0, column=0, sticky="nesw")
         ttk.Separator(self).grid(row=1, column=0, sticky="nesw")
 
         self.after(3000, self.waiting_for_events)
@@ -73,7 +73,7 @@ class Calendar(tk.Tk):
             self.frame_swap("Schedule Frame", self.selected_date)
 
     def waiting_for_events(self):
-        self.time_display.configure(text=str_time())
+        self.time_now.configure(text=str_time())
         cal_cur.execute("SELECT reminder_id, reminder_date, reminder_desc, delete_when_pass FROM reminders ")
         data = cal_cur.fetchall()
         data_updated = []

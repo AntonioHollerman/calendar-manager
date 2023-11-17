@@ -1,6 +1,7 @@
 from window_classes import *
 
 window = Calendar()
+window.title("Calendar App")
 window.run()
 
 if window.current_window == "Schedule Frame":
