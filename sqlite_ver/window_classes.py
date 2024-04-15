@@ -396,7 +396,7 @@ class ScheduleWindow(ttk.Frame):
         min_opt.set(30)
         am_pm_opt.set("pm")
 
-        insert_reminder("2023-12-31", "11:59pm", "Nothing here", True)
+        insert_reminder("2037-12-31", "11:59pm", "Nothing here", True)
         cal_cur.execute("SELECT reminder_id FROM reminders "
                         "ORDER BY reminder_id DESC "
                         "LIMIT 1")
