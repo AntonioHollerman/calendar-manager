@@ -3,7 +3,6 @@ import psycopg2 as pg2
 import time
 from calendar import monthrange, weekday
 from typing import List, Tuple
-from win10toast import ToastNotifier
 
 
 def create_database():
@@ -15,7 +14,6 @@ def create_database():
     some_cur.close()
 
 
-notification = ToastNotifier()
 try:
     cal_conn = pg2.connect(database='calendar', user='postgres', password='password')
     cal_cur = cal_conn.cursor()
@@ -247,9 +245,4 @@ def save_changes(rows_container: List[Tuple[tk.StringVar, tk.StringVar, tk.IntVa
 
 
 def send_notification(content: str):
-    notification.show_toast(
-        "Reminder",
-        content,
-        duration=10,
-        threaded=True
-    )
+    pass
